@@ -6,21 +6,29 @@ import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.memory.ChatMemory;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatModel;
-import dev.langchain4j.model.ollama.OllamaChatModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class App {
+public class AppOpenAI {
     public static void main(String[] args) {
         Scanner userinput;      // user inputted line as a Scanner
         String cmdline;
 
-        ChatModel cmodel = OllamaChatModel.builder()
-                .baseUrl("http://localhost:11434")
-                .modelName("mr_robot_v2")
+        // Get API key from environment variable
+        String apiKey = System.getenv("OPENAI_API_KEY");
+        if (apiKey == null || apiKey.isBlank()) {
+            System.err.println("Error: OPENAI_API_KEY environment variable not set");
+            System.err.println("Please set it with: export OPENAI_API_KEY='your-api-key'");
+            System.exit(1);
+        }
+
+        ChatModel cmodel = OpenAiChatModel.builder()
+                .apiKey(apiKey)
+                .modelName("gpt-4o-mini")  // or "gpt-4", "gpt-3.5-turbo"
                 .temperature(0.2)
                 .timeout(java.time.Duration.ofMinutes(2))
                 .build();
@@ -60,7 +68,7 @@ public class App {
     }
 
     private static String readResourceFile(String fileName) {
-        try (InputStream is = App.class.getClassLoader().getResourceAsStream(fileName)) {
+        try (InputStream is = AppOpenAI.class.getClassLoader().getResourceAsStream(fileName)) {
             if (is == null) {
                 throw new RuntimeException("Resource file not found: " + fileName);
             }

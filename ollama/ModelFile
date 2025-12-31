@@ -3,11 +3,11 @@ FROM qwen2.5:7b
 PARAMETER temperature 0.5
 PARAMETER seed 42
 
-# Context size
-PARAMETER num_ctx 4096
+# Context size - increased to handle larger Wikipedia content
+PARAMETER num_ctx 8192
 
 # Run on terminal
-# ollama create mr_robot -f ModelFile
+# ollama create mr_robot_v2 -f ModelFile
 
 # Use the model
-# ollama run mr_robot
+# ollama run mr_robot_v2
