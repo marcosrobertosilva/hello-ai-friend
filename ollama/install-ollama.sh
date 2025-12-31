@@ -39,17 +39,17 @@ for i in {1..30}; do
     sleep 1
 done
 
-# Pull the qwen3:0.6b model
+# Pull the qwen2.5:7b model
 echo ""
-echo "Downloading qwen3:0.6b model (this may take a few minutes)..."
-ollama pull qwen3:0.6b
-echo "✓ qwen3:0.6b model ready"
+echo "Downloading qwen2.5:7b model (this may take a few minutes)..."
+ollama pull qwen2.5:7b
+echo "✓ qwen2.5:7b model ready"
 echo ""
 echo "======================================"
 echo "Setup Complete!"
 echo "======================================"
 echo ""
-echo "Your Ollama server is running with the qwen3:0.6b model loaded."
+echo "Your Ollama server is running with the qwen2.5:7b model loaded."
 echo ""
 echo "Next steps:"
 echo "  1. Run your Java application:"

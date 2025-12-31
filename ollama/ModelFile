@@ -1,6 +1,6 @@
-FROM qwen3:0.6b
+FROM qwen2.5:7b
 
-PARAMETER temperature 0
+PARAMETER temperature 0.5
 PARAMETER seed 42
 
 # Context size
